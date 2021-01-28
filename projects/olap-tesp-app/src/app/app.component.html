@@ -1,0 +1,25 @@
+<input type="text" [formControl]="nameField" />
+<button (click)="createConfig()">Create</button>
+<select *ngIf="viewsList && viewsList.length > 0" [formControl]="selectedView">
+	<option [value]="null">Пусто</option>
+	<option *ngFor="let view of viewsList" [ngValue]="view">
+		{{ view.label }}
+	</option>
+</select>
+<select
+	*ngIf="selectedView.value && savedConfigList"
+	[formControl]="selectedConfig"
+>
+	<option [value]="null">Пусто 1</option>
+	<option [value]="null">Пусто 2</option>
+	<option *ngFor="let config of savedConfigList" [ngValue]="config">
+		{{ config.name }}
+	</option>
+</select>
+<isol-olap-view
+	#olapView
+	*ngIf="config"
+	[config]="config"
+	[sendStructure]="true"
+>
+</isol-olap-view>

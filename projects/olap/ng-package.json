@@ -1,0 +1,14 @@
+{
+	"$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+	"dest": "../../dist/olap",
+	"lib": {
+		"entryFile": "src/public_api.ts",
+		"umdModuleIds": {
+			"devextreme-angular": "devextreme-angular",
+			"devextreme": "devextreme",
+			"devextreme/data/custom_store": "devextreme/data/custom_store",
+			"devextreme/ui/pivot_grid/data_source": "devextreme/ui/pivot_grid/data_source",
+			"util": "util"
+		}
+	}
+}

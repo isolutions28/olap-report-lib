@@ -1,0 +1,119 @@
+<div id="olapViewContainer">
+	<div *ngIf="dataFieldPresent">
+		<isol-date-range-picker
+				[formControl]="date"
+				[dateRange]="dateRange"
+		></isol-date-range-picker>
+		<button
+			mat-raised-button
+			color="primary"
+			class="search-btn"
+			(click)="setDateRange()"
+		>
+			Отфильтровать
+		</button>
+	</div>
+
+	<div class="field-chooser" [class.hidden]="isCustomSetting">
+		<mat-expansion-panel [expanded]="true">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Фильтр настроек отчета
+				</mat-panel-title>
+				<mat-panel-description>
+					выбор полей и их настройка
+				</mat-panel-description>
+			</mat-expansion-panel-header>
+
+			<dx-pivot-grid-field-chooser
+				[dataSource]="pivotGridDataSource"
+				[height]="700"
+				[width]="900"
+				[texts]="localizedFieldChooserTexts"
+				applyChangesMode="onDemand"
+				[(state)]="state"
+			>
+			</dx-pivot-grid-field-chooser>
+
+			<div class="btn">
+				<dx-button
+					id="applyButton"
+					text="Применить"
+					type="default"
+					(onClick)="applyFilterAndClosePanel()"
+				>
+				</dx-button>
+			</div>
+		</mat-expansion-panel>
+	</div>
+
+	<ng-container *ngIf="pivotGridDataSource">
+		<div class="expand-group-container">
+			<h3>Поля для разворачивания</h3>
+
+			<div class="expand-group" *ngIf="getExpandData() | async as expandData">
+				<div class="expand-group-item" >
+					<span>Выберите, до какой строки нужно развернуть:</span>
+					<dx-drop-down-button
+						text="Строки"
+						[dropDownOptions]="{ width: 200 }"
+						icon="expand"
+						[items]="expandData.availableRows"
+						[useSelectMode]="true"
+						[selectedItemKey]="
+							expandData.selectedRow?.caption || expandData.availableRows[0]?.caption
+						"
+						[displayExpr]="formatCaption"
+						keyExpr="caption"
+						(onItemClick)="expandRowsAndClosePanel($event, expandData.availableRows)"
+					></dx-drop-down-button>
+				</div>
+
+				<div class="expand-group-item">
+					<span>Выберите, до какой колонки нужно развернуть:</span>
+					<dx-drop-down-button
+						text="Колонки"
+						[dropDownOptions]="{ width: 200 }"
+						icon="expand"
+						[items]="expandData.availableColumns"
+						[useSelectMode]="true"
+						[selectedItemKey]="
+							expandData.selectedColumn?.caption || expandData.availableColumns[0]?.caption
+						"
+						[displayExpr]="formatCaption"
+						keyExpr="caption"
+						(onItemClick)="expandColumnsAndClosePanel($event, expandData.availableColumns)"
+					></dx-drop-down-button>
+				</div>
+			</div>
+		</div>
+
+		<dx-pivot-grid
+			[allowSorting]="true"
+			[allowSortingBySummary]="true"
+			[allowFiltering]="true"
+			[showBorders]="true"
+			[rowHeaderLayout]="'tree'"
+			[texts]="localizedTexts"
+			[dataSource]="pivotGridDataSource"
+      (onContentReady)="handleTotalVisibilityState()"
+			(onInitialized)="onInitialized()"
+			(onExporting)="onExporting($event)"
+		>
+			<dxo-field-chooser
+				[enabled]="isCustomSetting"
+				[height]="700"
+				[width]="900"
+				[texts]="localizedFieldChooserTexts"
+				title="Настройки"
+			></dxo-field-chooser>
+			<dxo-export [enabled]="true" [fileName]="selectedView.label"></dxo-export>
+			<dxo-scrolling mode="virtual"></dxo-scrolling>
+		</dx-pivot-grid>
+	</ng-container>
+</div>
+
+<dx-load-panel
+	[position]="{ of: '#olapViewContainer' }"
+	[visible]="areFieldsLoading"
+></dx-load-panel>

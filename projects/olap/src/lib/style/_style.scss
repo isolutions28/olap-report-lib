@@ -1,0 +1,16 @@
+@import '~devextreme/dist/css/dx.common.css';
+@import '~devextreme/dist/css/dx.light.css';
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$theme-primary-hue: 500;
+$theme-accent-hue: 500;
+$theme-warn-hue: 500;
+
+$theme-primary: mat-palette($mat-teal, $theme-primary-hue);
+$theme-accent: mat-palette($mat-blue, $theme-accent-hue);
+$theme-warn: mat-palette($mat-red, $theme-warn-hue);
+
+$theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
+

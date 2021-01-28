@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/app",
+    "paths": {
+      "@isolutions/olap": [
+        "../../dist/olap"
+      ],
+      "@isolutions/olap/*": [
+        "../../dist/olap/*"
+      ]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

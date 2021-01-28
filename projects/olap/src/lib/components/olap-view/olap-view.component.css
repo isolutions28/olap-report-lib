@@ -1,0 +1,42 @@
+.search-btn {
+	margin-left: 10px;
+}
+
+.expand-group-container {
+	box-sizing: border-box;
+	width: 900px;
+	margin: 10px 0 10px;
+	padding: 0 10px 10px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.expand-group-container h3 {
+	margin: 12px 0 12px 5px;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.expand-group {
+	display: flex;
+	flex-direction: row;
+}
+
+.expand-group-item {
+	flex: 1;
+	margin-right: 20px;
+}
+
+.expand-group-item:last-child {
+	margin-right: 0;
+}
+
+.expand-group-item span {
+	display: block;
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+
+.hidden {
+	display: none;
+}

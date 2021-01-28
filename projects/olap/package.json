@@ -1,0 +1,21 @@
+{
+  "name": "@innovations28/olap",
+  "version": "0.0.58",
+  "peerDependencies": {
+    "@angular/common": "^10.1.0",
+    "@angular/core": "^10.1.0",
+    "@angular/forms": "^10.1.0",
+    "devextreme": "20.1.7",
+    "devextreme-angular": "20.1.7",
+    "stream": "0.0.2",
+    "@angular/material": "~10.2.1",
+    "@angular/material-moment-adapter": "~10.2.1",
+    "@angular/cdk": "~10.2.1",
+    "moment": "~2.20.1",
+    "moment-range": "^4.0.2",
+    "exceljs": "^4.1.1",
+    "file-saver": "^2.0.2",
+    "jquery-deferred": "^0.3.1",
+    "ramda": "^0.27.1"
+  }
+}
